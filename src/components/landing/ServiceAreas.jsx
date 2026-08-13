@@ -1,0 +1,64 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
+
+const MAP_BG = "images/servicearea.png";
+
+const areas = [
+  "South Yarra",
+  "Richmond",
+  "Prahran",
+  "Melbourne CBD",
+  "St Kilda",
+  "Toorak",
+  "Armadale",
+  "Windsor",
+];
+
+export default function ServiceAreas() {
+  return (
+    <section id="areas" className="py-24 md:py-40 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.06]">
+        <img src={MAP_BG} alt="" className="w-full h-full object-cover" />
+      </div>
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20"
+        >
+          <p className="text-[#2E7D32] text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+            Service Areas
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-[#1A1A1A] mb-6">
+            Serving Melbourne's inner suburbs
+          </h2>
+          <p className="text-lg text-[#1A1A1A]/60 max-w-2xl mx-auto leading-relaxed">
+            We're proud to serve communities across Melbourne's most vibrant
+            neighbourhoods.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {areas.map((area, i) => (
+            <motion.div
+              key={area}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-[#2E7D32]/5 hover:border-[#2E7D32]/20 transition-all duration-500 hover:shadow-lg hover:shadow-[#2E7D32]/5 hover:-translate-y-0.5 flex items-center gap-3 group cursor-default"
+            >
+              <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] flex items-center justify-center flex-shrink-0 group-hover:bg-[#2E7D32] transition-colors duration-500">
+                <MapPin className="w-4 h-4 text-[#2E7D32] group-hover:text-white transition-colors duration-500" />
+              </div>
+              <span className="font-medium text-[#1A1A1A] text-sm">{area}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
